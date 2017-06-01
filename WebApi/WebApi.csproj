@@ -79,8 +79,6 @@
     <None Include="data.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <Compile Include="Listing.cs" />
-    <Compile Include="Inventory.cs" />
     <Compile Include="ListingsController.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="Program.cs" />

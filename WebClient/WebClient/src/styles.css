@@ -1,1 +1,16 @@
-/* You can add global styles to this file, and also import other style files */
+﻿.profile-card {
+    max-width: 80%;
+}
+
+.profile-card-body {
+    padding-bottom: 20px;
+}
+
+.transformation-separator {
+    border: 1px;
+    height: 1px;
+}
+
+.dotted-container {
+    padding: 5px;
+}

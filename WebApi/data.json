@@ -1,31 +1,31 @@
 ﻿{
-	"Listings": [
-		{
-			"ID": 1,
-			"Company": "Lenovo",
-			"Model": "NGFH-1000",
-			"MemoryInGB": 64,
-			"CPUSpeedInGHz": 3,
-			"Cores": 4,
-			"CostInDollars": 1000
-		},
-		{
-			"ID": 2,
-			"Company": "Acer",
-			"Model": "WFTR-1000",
-			"MemoryInGB": 32,
-			"CPUSpeedInGHz": 2,
-			"Cores": 2,
-			"CostInDollars": 500
-		},
-		{
-			"ID": 3,
-			"Company": "Dell",
-			"Model": "APWF-1000",
-			"MemoryInGB": 32,
-			"CPUSpeedInGHz": 3,
-			"Cores": 8,
-			"CostInDollars": 1500
-		}
-	]
+  "listings": [
+    {
+      "id": 1,
+      "company": "Lenovo",
+      "model": "NGFH-1000",
+      "memoryInGB": 64,
+      "cpuSpeedInGHz": 3,
+      "cores": 4,
+      "costInDollars": 1000
+    },
+    {
+      "id": 2,
+      "company": "Acer",
+      "model": "WFTR-1000",
+      "memoryInGB": 32,
+      "cpuSpeedInGHz": 2,
+      "cores": 2,
+      "costInDollars": 500
+    },
+    {
+      "id": 3,
+      "company": "Dell",
+      "model": "APWF-1000",
+      "memoryInGB": 32,
+      "cpuSpeedInGHz": 3,
+      "cores": 8,
+      "costInDollars": 1500
+    }
+  ]
 }

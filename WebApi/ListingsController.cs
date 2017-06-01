@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.Http;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
 namespace WebApi
@@ -17,14 +18,13 @@ namespace WebApi
 			return data;
 		}
 		
-		public void Post([FromBody]string value)
+		public dynamic Post([FromBody]object inventory)
 		{
-		}
-		
-		
-		// DELETE api/values/5 
-		public void Delete(int id)
-		{
+			var text = JsonConvert.SerializeObject(inventory);
+			File.WriteAllText("data.json", text);
+
+			var data = JObject.Parse(File.ReadAllText("data.json"));
+			return data;
 		}
 	}
 }

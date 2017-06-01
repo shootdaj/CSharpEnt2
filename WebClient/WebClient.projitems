@@ -10,7 +10,6 @@
   </PropertyGroup>
   <ItemGroup>
     <None Include="$(MSBuildThisFileDirectory)WebClient\.editorconfig" />
-    <None Include="$(MSBuildThisFileDirectory)WebClient\.gitignore" />
     <None Include="$(MSBuildThisFileDirectory)WebClient\e2e\app.e2e-spec.ts" />
     <None Include="$(MSBuildThisFileDirectory)WebClient\e2e\app.po.ts" />
     <None Include="$(MSBuildThisFileDirectory)WebClient\karma.conf.js" />

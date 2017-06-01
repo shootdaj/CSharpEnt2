@@ -9,7 +9,7 @@
         </mdl-layout-header-row>
     </mdl-layout-header>
     <mdl-layout-content class="app-content">
-        <form novalidate *ngIf="this.form != null" [formGroup]="form" (ngSubmit)="saveData()">
+        <form novalidate *ngIf="this.form != null" [formGroup]="form" (ngSubmit)="saveListings()">
             <fieldset>
                 <div [formGroup]="form" *ngIf="this.form != null" class="mdl-grid mdl-grid--no-spacing profile-card">
                     <mdl-card mdl-shadow="8" class="mdl-cell mdl-cell--12-col">
@@ -28,7 +28,16 @@
                                     <hr class="listing-separator" />
                                     <div formArrayName="listings">
                                         <div *ngFor="let listing of form.controls.listings.controls; let i=index">
-                                                        
+                                            <input type="hidden" [formControl]="listing.controls['id']" />
+                                            <mdl-textfield type="text" label="Company" floating-label [formControl]="listing.controls['company']"></mdl-textfield>
+                                            <mdl-textfield type="text" label="Model" floating-label [formControl]="listing.controls['model']"></mdl-textfield>
+                                            <mdl-textfield type="text" label="Memory (in GB)" floating-label [formControl]="listing.controls['memoryInGB']"></mdl-textfield>
+                                            <mdl-textfield type="text" label="CPU Speed (in GHz)" floating-label [formControl]="listing.controls['cpuSpeedInGHz']"></mdl-textfield>
+                                            <mdl-textfield type="text" label="Cores" floating-label [formControl]="listing.controls['cores']"></mdl-textfield>
+                                            <mdl-textfield type="text" label="Cost (in USD)" floating-label [formControl]="listing.controls['costInDollars']"></mdl-textfield>
+                                            <button type="button" mdl-button mdl-ripple mdl-button-type="icon" [mdl-tooltip]="'Delete'" (click)="deleteListing(listing.controls['id'].value)">
+                                                <span class="zmdi zmdi-delete zmdi-hc-md"></span>
+                                            </button>
                                             <hr class="listing-separator" />
                                         </div>
                                     </div>
@@ -49,9 +58,6 @@
                         <mdl-card-actions mdl-card-border>
                             <button type="submit" mdl-button mdl-button-type="raised" mdl-colored="primary" mdl-ripple>
                                 Save
-                            </button>
-                            <button mdl-button mdl-button-type="raised" mdl-ripple>
-                                Cancel
                             </button>
                         </mdl-card-actions>
                     </mdl-card>

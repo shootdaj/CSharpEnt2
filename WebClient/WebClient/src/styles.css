@@ -14,3 +14,14 @@
 .dotted-container {
     padding: 5px;
 }
+
+.app-content {
+    padding: 20px;
+}
+
+.slim-loading-bar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 999;
+}

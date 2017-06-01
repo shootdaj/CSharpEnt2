@@ -1,9 +1,7 @@
-﻿import { Component, ViewChild, Injectable, Input, Output, EventEmitter, OnInit, AfterViewInit, OnDestroy, ChangeDetectionStrategy } from '@angular/core';
-import { FormArray, FormsModule, ReactiveFormsModule, FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
+﻿import { Component, OnDestroy } from '@angular/core';
+import { FormArray, FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { Http } from '@angular/http';
-import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
-import { Subject } from 'rxjs/Subject';
 import { SlimLoadingBarService } from 'ng2-slim-loading-bar';
 import './rxjs-operators';
 
@@ -12,8 +10,9 @@ import './rxjs-operators';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnDestroy {
   private form: FormGroup;
+  private subscriptions: Subscription[] = new Array<Subscription>();
 
   constructor(
     private http: Http,
@@ -24,13 +23,14 @@ export class AppComponent {
 
   private getListings() {
     this.slimLoadingBarService.start();
-    this.http.get("http://localhost:9000/api/listings")
-      .map(response => response.json())
-      .subscribe(inventory => {
-        this.setForm(inventory);
-        this.slimLoadingBarService.complete();
-      },
-      err => console.log(err));
+    this.subscriptions.push(
+      this.http.get("http://localhost:9000/api/listings")
+        .map(response => response.json())
+        .subscribe(inventory => {
+          this.setForm(inventory);
+          this.slimLoadingBarService.complete();
+        },
+        err => console.log(err)));
   }
 
   private setForm(inventory) {
@@ -38,9 +38,17 @@ export class AppComponent {
   }
 
   private initForm(inventory): FormGroup {
-    return this.fb.group({
+    let form = this.fb.group({
       listings: this.fb.array(this.getListingsFormGroups(inventory.listings))
     });
+
+    this.subscriptions.push(form.valueChanges.debounceTime(1000).subscribe(value => {
+      if (this.form.valid) {
+        this.saveListings();
+      }
+    }));
+
+    return form;
   }
 
   private getListingsFormGroups(listings: any[]): FormGroup[] {
@@ -62,15 +70,17 @@ export class AppComponent {
   }
 
   public saveListings() {
-    this.slimLoadingBarService.start();
-    let inventory = this.form.value;
-    this.http.post("http://localhost:9000/api/listings", inventory)
-      .map(response => response.json())
-      .subscribe(inventory => {
-        this.setForm(inventory);
-        this.slimLoadingBarService.complete();
-      },
-      err => console.log(err));
+    if (this.form.valid) {
+      this.slimLoadingBarService.start();
+      let inventory = this.form.value;
+      this.subscriptions.push(this.http.post("http://localhost:9000/api/listings", inventory)
+        .map(response => response.json())
+        .subscribe(inventory => {
+          this.setForm(inventory);
+          this.slimLoadingBarService.complete();
+        },
+        err => console.log(err)));
+    }
   }
 
   public deleteListing(id) {
@@ -81,6 +91,8 @@ export class AppComponent {
         listings.removeAt(i);
       }
     }
+
+    this.saveListings();
   }
 
   public addNewListing() {
@@ -96,5 +108,9 @@ export class AppComponent {
     }));
 
     this.saveListings();
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.forEach(s => s.unsubscribe());
   }
 }

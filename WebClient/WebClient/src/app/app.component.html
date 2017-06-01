@@ -25,7 +25,6 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <hr class="listing-separator" />
                                     <div formArrayName="listings">
                                         <div *ngFor="let listing of form.controls.listings.controls; let i=index">
                                             <input type="hidden" [formControl]="listing.controls['id']" />
@@ -45,7 +44,7 @@
                                         <div class="mdl-grid mdl-grid--no-spacing">
                                             <div class="mdl-cell--12-col">
                                                 <div class="mdl-grid mdl-grid--no-spacing">
-                                                    <button type="button" mdl-button mdl-button-type="fab" mdl-shadow="4" mdl-ripple (click)="addNewListing()" class="profile-hover">
+                                                    <button type="button" mdl-button mdl-button-type="fab" mdl-shadow="4" mdl-colored="accent" mdl-ripple (click)="addNewListing()" class="profile-hover" [mdl-tooltip]="'Add new Listing'">
                                                         <span class="zmdi zmdi-plus zmdi-hc-2x"></span>
                                                     </button>
                                                 </div>

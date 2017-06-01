@@ -1,0 +1,31 @@
+﻿{
+	"Listings": [
+		{
+			"ID": 1,
+			"Company": "Lenovo",
+			"Model": "NGFH-1000",
+			"MemoryInGB": 64,
+			"CPUSpeedInGHz": 3,
+			"Cores": 4,
+			"CostInDollars": 1000
+		},
+		{
+			"ID": 2,
+			"Company": "Acer",
+			"Model": "WFTR-1000",
+			"MemoryInGB": 32,
+			"CPUSpeedInGHz": 2,
+			"Cores": 2,
+			"CostInDollars": 500
+		},
+		{
+			"ID": 3,
+			"Company": "Dell",
+			"Model": "APWF-1000",
+			"MemoryInGB": 32,
+			"CPUSpeedInGHz": 3,
+			"Cores": 8,
+			"CostInDollars": 1500
+		}
+	]
+}

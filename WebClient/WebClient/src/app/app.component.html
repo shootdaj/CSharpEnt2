@@ -1,0 +1,62 @@
+﻿<ng2-slim-loading-bar height="4px" color="#76FF03"></ng2-slim-loading-bar>
+<mdl-layout mdl-layout-mode="waterfall" class="mdl-layout--no-drawer-button">
+    <mdl-layout-header>
+        <mdl-layout-header-row>
+            <mdl-layout-title>C# Entertainment CRUD App</mdl-layout-title>
+            <mdl-layout-spacer></mdl-layout-spacer>
+            <nav class="mdl-navigation">
+            </nav>
+        </mdl-layout-header-row>
+    </mdl-layout-header>
+    <mdl-layout-content class="app-content">
+        <form novalidate *ngIf="this.form != null" [formGroup]="form" (ngSubmit)="saveData()">
+            <fieldset>
+                <div [formGroup]="form" *ngIf="this.form != null" class="mdl-grid mdl-grid--no-spacing profile-card">
+                    <mdl-card mdl-shadow="8" class="mdl-cell mdl-cell--12-col">
+                        <mdl-card-supporting-text>
+                            <div class="mdl-grid profile-card-body mdl-grid--no-spacing">
+                                <div class="mdl-cell--12-col">
+                                    <div class="mdl-grid">
+                                        <div class="mdl-cell--12-col">
+                                            <div class="mdl-grid">
+                                                <h4>
+                                                    Listings
+                                                </h4>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr class="listing-separator" />
+                                    <div formArrayName="listings">
+                                        <div *ngFor="let listing of form.controls.listings.controls; let i=index">
+                                                        
+                                            <hr class="listing-separator" />
+                                        </div>
+                                    </div>
+                                    <div class="dotted-container">
+                                        <div class="mdl-grid mdl-grid--no-spacing">
+                                            <div class="mdl-cell--12-col">
+                                                <div class="mdl-grid mdl-grid--no-spacing">
+                                                    <button type="button" mdl-button mdl-button-type="fab" mdl-shadow="4" mdl-ripple (click)="addNewListing()" class="profile-hover">
+                                                        <span class="zmdi zmdi-plus zmdi-hc-2x"></span>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </mdl-card-supporting-text>
+                        <mdl-card-actions mdl-card-border>
+                            <button type="submit" mdl-button mdl-button-type="raised" mdl-colored="primary" mdl-ripple>
+                                Save
+                            </button>
+                            <button mdl-button mdl-button-type="raised" mdl-ripple>
+                                Cancel
+                            </button>
+                        </mdl-card-actions>
+                    </mdl-card>
+                </div>
+            </fieldset>
+        </form>
+    </mdl-layout-content>
+</mdl-layout>

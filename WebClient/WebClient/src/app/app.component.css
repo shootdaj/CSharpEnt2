@@ -1,0 +1,16 @@
+﻿.profile-card {
+    max-width: 80%;
+}
+
+.profile-card-body {
+    padding-bottom: 20px;
+}
+
+.transformation-separator {
+    border: 1px;
+    height: 1px;
+}
+
+.dotted-container {
+    padding: 5px;
+}
